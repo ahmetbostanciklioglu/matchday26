@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MatchDay 26 — Live Scores, Brackets &amp; 3D Stadiums</title>
+<meta name="description" content="Track all 104 games of the 2026 tournament across North America. Live scores, lineups, standings, knockout bracket, 3D stadiums with live weather, top scorers and national anthems — no account needed." />
+<meta property="og:title" content="MatchDay 26 — Live Soccer" />
+<meta property="og:description" content="Every match. Every goal. As it happens. The 2026 tournament in your pocket." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%2300A368'/><circle cx='50' cy='50' r='30' fill='white'/><circle cx='50' cy='50' r='9' fill='%230B1437'/></svg>" />
+<style>
+  :root{
+    --pitch:#00A368; --pitch-d:#047857; --blue:#2563EB; --magenta:#EC4899;
+    --gold:#F59E0B; --navy:#0B1437; --ink:#0d1326; --muted:#5b657d;
+    --card:#ffffff; --bg:#f5f7fb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;color:#fff;padding:72px 0 88px;
+    background:linear-gradient(135deg,#00A368 0%,#0E8E5F 38%,#2563EB 100%)}
+  .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(10px);opacity:.5}
+  .hero::before{width:420px;height:420px;background:radial-gradient(circle,rgba(236,72,153,.55),transparent 60%);top:-120px;right:-80px}
+  .hero::after{width:380px;height:380px;background:radial-gradient(circle,rgba(245,158,11,.5),transparent 60%);bottom:-160px;left:-60px}
+  .hero .wrap{position:relative;z-index:1}
+  .brandrow{display:flex;align-items:center;gap:12px;margin-bottom:34px}
+  .logo{width:46px;height:46px;border-radius:13px;background:#fff;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+  .logo svg{width:30px;height:30px}
+  .brandrow b{font-size:18px;font-weight:800;letter-spacing:.2px}
+  .nav{margin-left:auto;display:flex;gap:22px;font-weight:600;font-size:15px;opacity:.95}
+  .nav a:hover{opacity:.8}
+  h1{font-size:clamp(34px,6vw,58px);font-weight:850;line-height:1.05;letter-spacing:-1px;max-width:14ch}
+  .tag{font-size:clamp(17px,2.4vw,21px);opacity:.92;margin-top:18px;max-width:46ch}
+  .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+  .badge{display:inline-flex;align-items:center;gap:10px;background:#000;color:#fff;border-radius:14px;
+    padding:12px 18px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .badge small{display:block;font-size:10px;font-weight:600;opacity:.8;line-height:1}
+  .badge span{font-size:18px;line-height:1.1}
+  .ghost{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:12px 18px;font-weight:700;backdrop-filter:blur(6px)}
+  .stats{display:flex;gap:30px;margin-top:46px;flex-wrap:wrap}
+  .stat b{font-size:30px;font-weight:850;display:block}
+  .stat span{font-size:13px;opacity:.85;font-weight:600}
+
+  /* SECTIONS */
+  section{padding:72px 0}
+  .eyebrow{color:var(--pitch);font-weight:800;font-size:13px;letter-spacing:1.4px;text-transform:uppercase}
+  h2{font-size:clamp(26px,4vw,38px);font-weight:850;letter-spacing:-.5px;margin:8px 0 10px}
+  .lead{color:var(--muted);font-size:17px;max-width:54ch}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:36px}
+  .feat{background:var(--card);border:1px solid #eef1f6;border-radius:20px;padding:24px;
+    box-shadow:0 10px 30px rgba(13,19,38,.05);transition:transform .25s ease,box-shadow .25s ease}
+  .feat:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(13,19,38,.10)}
+  .ic{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:24px;margin-bottom:16px;color:#fff}
+  .feat h3{font-size:19px;font-weight:800;margin-bottom:6px}
+  .feat p{color:var(--muted);font-size:15px}
+
+  .band{background:linear-gradient(135deg,var(--navy),#13265a);color:#fff;border-radius:28px;padding:46px;
+    display:flex;align-items:center;gap:30px;flex-wrap:wrap;margin-top:14px}
+  .band h2{margin:0}
+  .band p{opacity:.85;margin-top:8px;max-width:50ch}
+  .band .cta{margin-top:0;margin-left:auto}
+
+  footer{padding:46px 0 60px;border-top:1px solid #e7ebf2;color:var(--muted);font-size:14px}
+  .frow{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+  .frow a{font-weight:600;color:var(--ink)}
+  .frow a:hover{color:var(--pitch)}
+  .disc{margin-top:20px;font-size:12.5px;line-height:1.6;color:#8a93a6;max-width:80ch}
+  @media(max-width:640px){.nav{display:none}.band .cta{margin-left:0}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brandrow">
+      <span class="logo">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#00A368"/><circle cx="50" cy="50" r="30" fill="#fff"/><circle cx="50" cy="50" r="9" fill="#0B1437"/><g stroke="#0B1437" stroke-width="3" fill="none"><path d="M50 21 L50 41 M50 59 L50 79 M24 38 L41 47 M59 47 L76 38 M30 70 L42 58 M58 58 L70 70"/></g></svg>
+      </span>
+      <b>MatchDay 26</b>
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </div>
+
+    <h1>Every match. Every goal. As it happens.</h1>
+    <p class="tag">The 2026 tournament across the United States, Mexico &amp; Canada — live in your pocket. No account, no setup.</p>
+
+    <div class="cta">
+      <span class="badge"> <span style="font-size:24px">&#63743;</span> <span><small>Coming soon to the</small>App Store</span></span>
+      <a href="#features" class="ghost">See what's inside ↓</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>104</b><span>MATCHES</span></div>
+      <div class="stat"><b>48</b><span>NATIONS</span></div>
+      <div class="stat"><b>16</b><span>STADIUMS</span></div>
+      <div class="stat"><b>3</b><span>HOST COUNTRIES</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <div class="eyebrow">What's inside</div>
+    <h2>The whole tournament, beautifully organised</h2>
+    <p class="lead">From the opening whistle to the final, follow the drama with live data, real stadium photography and a design built for matchday.</p>
+
+    <div class="grid">
+      <div class="feat"><div class="ic" style="background:linear-gradient(135deg,#EF4444,#EC4899)">&#9917;</div>
+        <h3>Live Scores &amp; Fixtures</h3><p>All 104 matches with real-time scores, a smart day-by-day calendar and a featured card for the match that matters right now.</p></div>
+
+      <div class="feat"><div class="ic" style="background:linear-gradient(135deg,#00A368,#2563EB)">&#128202;</div>
+        <h3>Groups &amp; Knockout Bracket</h3><p>Live standings for all 12 groups with points, goal difference and form — plus a visual road-to-glory bracket to the final.</p></div>
+
+      <div class="feat"><div class="ic" style="background:linear-gradient(135deg,#FBBF24,#F59E0B)">&#129351;</div>
+        <h3>Golden Boot &amp; Assists</h3><p>Live top-scorer and top-assist leaderboards with a medal podium and player photos.</p></div>
+
+      <div class="feat"><div class="ic" style="background:linear-gradient(135deg,#2563EB,#7C3AED)">&#127967;</div>
+        <h3>3D Stadiums + Live Weather</h3><p>Explore all 16 venues with real photos, a realistic 3D satellite flyover, and live temperature, wind &amp; humidity for match conditions.</p></div>
+
+      <div class="feat"><div class="ic" style="background:linear-gradient(135deg,#8B5CF6,#2563EB)">&#127758;</div>
+        <h3>48 Teams &amp; Squads</h3><p>Browse every nation by group or confederation. Team profiles, full rosters with player photos, and individual details.</p></div>
+
+      <div class="feat"><div class="ic" style="background:linear-gradient(135deg,#EC4899,#7C3AED)">&#127925;</div>
+        <h3>Anthems &amp; Songs</h3><p>Listen to all 48 national anthems and the tournament songs — right inside the app.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <div>
+        <h2>Built to be instant.</h2>
+        <p>Fully usable with zero sign-up. Add a free optional key to unlock 0–10 player match ratings. Fast, private, and free.</p>
+      </div>
+      <div class="cta">
+        <span class="badge"> <span style="font-size:24px">&#63743;</span> <span><small>Coming soon to the</small>App Store</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="frow">
+      <b>MatchDay 26</b>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:ahmetbostancikli@gmail.com">Contact</a>
+      <span style="margin-left:auto">© 2026 Ahmet Bostancıklıoğlu</span>
+    </div>
+    <p class="disc">Not affiliated with, authorized, or endorsed by FIFA or any official tournament organizer. All team names, badges and likenesses are the property of their respective owners. Live match data is provided by third-party sports services and may be delayed or incomplete.</p>
+  </div>
+</footer>
+
+</body>
+</html>
